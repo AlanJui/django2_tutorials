@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:9.6
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    environment:
+      POSTGRES_PASSWORD: Passw0rd
+
+  web:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+    links:
+      - db
+#    command: django-admin startproject web_site .
+    command: python manage.py runserver 0.0.0.0:8000
+
+
+volumes:
+  db-data:
+
+networks:
+  backend:
