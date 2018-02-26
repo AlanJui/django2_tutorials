@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Project apps
-    'polls',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
